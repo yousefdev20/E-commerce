@@ -2202,7 +2202,7 @@ __webpack_require__.r(__webpack_exports__);
             location.reload();
             console.log(response.data);
           })["catch"](function (error) {
-            location.href = '../../login';
+            console.error(error); //location.href = '../../login';
           })["finally"](function () {});
         }
       }, function (err) {
@@ -2997,13 +2997,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       products: [],
       cart: [],
       status: false,
-      ProductAddInCart: ''
+      ProductAddInCart: '',
+      categories: []
     };
   },
   created: function created() {
@@ -3037,11 +3048,8 @@ __webpack_require__.r(__webpack_exports__);
       var that = this;
       that.products = [];
       axios.get('/goods/shops/load').then(function (response) {
-        for (var index = 0; index < response.data.length; index++) {
-          that.products.push(response.data[index]);
-        }
-
-        console.log(response.data);
+        that.products = response.data.ShopProducts;
+        that.categories = response.data.categorie; //console.log(response.data.categorie);
       })["catch"](function (error) {
         // handle error
         console.log(error);
@@ -3076,6 +3084,22 @@ __webpack_require__.r(__webpack_exports__);
       setTimeout(function () {
         that.status = false;
       }, 3500);
+    },
+    Fillter: function Fillter(event) {
+      var that = this;
+      var pro = [];
+      alert(that.products[0].branche_name);
+
+      for (var x = 0; x < that.products.length; x++) {
+        console.log("try #" + x + that.products[x].branche_name + "==" + event.branche_name);
+
+        if (that.products[x].branche_name == event.branche_name) {
+          pro.push(that.products);
+        }
+      }
+
+      that.products = pro;
+      console.log(pro);
     }
   }
 });
@@ -39958,6 +39982,50 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "app" } }, [
+    _c(
+      "h5",
+      _vm._l(_vm.categories, function(item, index) {
+        return _c("div", { staticClass: "d-inline mb-5 text-primary" }, [
+          _vm.categories.length != index + 1
+            ? _c("div", { staticClass: "d-inline" }, [
+                _c(
+                  "b",
+                  {
+                    ref: item.bnche_name,
+                    refInFor: true,
+                    staticClass: "mb-5 ml-2",
+                    attrs: { id: item.branch_name },
+                    on: {
+                      click: function($event) {
+                        return _vm.Fillter(item)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(item.branche_name) + " <")]
+                )
+              ])
+            : _c("div", { staticClass: "d-inline" }, [
+                _c(
+                  "b",
+                  {
+                    ref: item.bnche_name,
+                    refInFor: true,
+                    staticClass: "mb-5 ml-2",
+                    attrs: { id: item.branch_name },
+                    on: {
+                      click: function($event) {
+                        return _vm.Fillter(item)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(item.branche_name) + " ")]
+                )
+              ])
+        ])
+      }),
+      0
+    ),
+    _vm._v(" "),
     _vm.status
       ? _c("div", [
           _c(

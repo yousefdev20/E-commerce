@@ -1,5 +1,15 @@
 <template>
   <div id="app">
+      <h5>
+          <div v-for="(item, index) in categories"class="d-inline mb-5 text-primary">
+              <div v-if="categories.length != index+1" class="d-inline">
+                  <b @click="Fillter(item)" :ref="item.bnche_name" :id="item.branch_name" class="mb-5 ml-2">{{ item.branche_name }} <</b>
+              </div>
+              <div v-else class="d-inline">
+                  <b @click="Fillter(item)" :ref="item.bnche_name" :id="item.branch_name" class="mb-5 ml-2">{{ item.branche_name }} </b>
+              </div>
+          </div>
+      </h5>
     <div v-if="status">
       <div class="alert alert-success alert-dismissible fade show">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -34,10 +44,11 @@
 export default {
   data() {
     return {
-      products:[],
-      cart:[],
-      status:false,
-      ProductAddInCart:'',
+        products:[],
+        cart:[],
+        status:false,
+        ProductAddInCart:'',
+        categories: [],
     }
   },
   created() {
@@ -75,10 +86,10 @@ export default {
       that.products = [];
       axios.get('/goods/shops/load')
       .then(function (response) {
-        for (var index = 0; index < response.data.length; index++) {
-          that.products.push(response.data[index]);
-        }
-        console.log(response.data);
+          that.products = response.data.ShopProducts;
+          that.categories = response.data.categorie;
+          //console.log(response.data.categorie);
+
       })
       .catch(function (error) {
         // handle error
@@ -124,6 +135,19 @@ export default {
         that.status = false;
     }, 3500)
     },
+      Fillter(event){
+        var that = this;
+        var pro = [];
+          alert(that.products[0].branche_name);
+           for(var x = 0; x < that.products.length; x++){
+               console.log("try #"+x+that.products[x].branche_name +"=="+ event.branche_name);
+              if(that.products[x].branche_name == event.branche_name){
+                pro.push(that.products);
+              }
+          }
+        that.products = pro;
+          console.log(pro);
+      },
   }
 };
 </script>

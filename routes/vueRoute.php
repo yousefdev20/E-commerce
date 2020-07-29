@@ -27,9 +27,15 @@ Route::resource('/order', 'order\orderController');
 Route::get('/deals','shopping\dealController@index');
 
 Route::group(['prefix' => '/goods', 'namespace' => 'shopping\shops'],function(){
+//For UI
   Route::get('/bakery','bakeryController@index');
   Route::get('/mall','mallController@index');
   Route::get('/shops','shopsController@index');
+//With Id For Search Bar
+  Route::get('/bakery/search/{id}','bakeryController@search');
+  Route::get('/mall/search/{id}','mallController@search');
+  Route::get('/shops/search/{id}','shopsController@search');
+  //For API
   Route::get('/bakery/load','bakeryController@show');
   Route::get('/mall/load','mallController@show');
   Route::get('/shops/load','shopsController@show');

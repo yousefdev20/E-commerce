@@ -20,6 +20,9 @@ class shopsController extends Controller
     $categories = Cache::get('shopsCategories');
     return view('shopping.shop')->with('categories',$categories);
   }
+  public function search($id){
+    return $id;
+  }
   public function show(){
     // for load methods
     //i have three table to get data form them
@@ -29,7 +32,7 @@ class shopsController extends Controller
     * 2. branches
     * 3. products
     */
-    Cache::remember('ShopProducts', 300, function(){
+    $ShopProducts = Cache::remember('ShopProducts', 300, function(){
       return  DB::table('products')
       ->leftJoin('branches', 'products.branch_id', '=', 'branches.id')
       ->where('store_id',3)
@@ -43,6 +46,13 @@ class shopsController extends Controller
       ->get();
 
     });
-    return Cache::get('ShopProducts');
+      $categorie = Cache::remember('shopsCategories' ,300 , function() {
+          return $categories = collect($branches = DB::table('branches')
+              ->select('branches.name as branche_name')
+              ->where('store_id',3)->get()
+          );
+          $categories->values()->all();
+      });
+    return compact(['categorie', 'ShopProducts']);
   }
 }

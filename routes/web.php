@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+//use Barryvdh\DomPDF\Facade\Pdf;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +38,6 @@ Route::group(['prefix'=> 'lang', 'namespace' => 'lang'],function(){
 Route::get('admin/cache','cache\cacheController@index');
 Route::get('admin/down','cache\cacheController@down');
 Route::get('admin/up','cache\cacheController@up');
+
+
+Route::get('/pdf','bill\PDFController@installBill');

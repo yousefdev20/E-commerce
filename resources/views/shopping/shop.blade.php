@@ -5,21 +5,12 @@
 {{ App::setLocale(Session::get('lang')) }}
     <section class="ftco-section mt-3">
       <div class="container">
-        <h5>
-          @foreach($categories as $key => $item)
-            @if(count($categories) == $key+1)
-              <a href="#" class="mr-3">{{ $item->branche_name }} </a>
-            @else
-              <a href="#" class="mr-3">{{ $item->branche_name }} < </a>
-            @endif
-          @endforeach
-        </h5>
         <div class="row justify-content-center pb-3">
           <div class="col-md-12 heading-section ftco-animate">
             @if(Session::get('lang') == 'ar')
-            <h2 class="mb-4 text-dark font-weight-bold display-5 float-right">
+            <h2 class="text-dark font-weight-bold display-5 float-right">
               @else
-              <h2 class="mb-4 text-dark font-weight-bold display-5 float-left">
+              <h2 class="text-dark font-weight-bold display-5 float-left">
             @endif
               {{ __('main.shops') }}
             </h2>
