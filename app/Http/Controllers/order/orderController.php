@@ -54,16 +54,27 @@ class orderController extends Controller
       if (Session::has('cart')) {
         $date = date('YmdHi');
         $user_id = auth()->user()->id;
+          $dateNow = date('Y-m-d');
+          /*
+           * status 1 Done.
+           * status 2 Underway.
+           * status 3 Block admin there proble here
+           * check usesr.
+           * */
         DB::table('orders')->insert([
           'user_email' => auth()->user()->id,
-          'unique_id' => $user_id.$date
+          'unique_id' => $user_id.$date,
+            'created_at' => $dateNow,
+            'status' => 2,
         ]);
         $data = [];
         $cart = collect(Session::get('cart'))->collapse();
+        $dateNow = date('Y-m-d');
         foreach ($cart as $key => $value) {
           $data[] = [
             'product_id' => $cart[$key]->id,
             'order_id' => DB::table('orders')->where('unique_id', '=',$user_id.$date)->select('id')->first()->id,
+            'created_at' => $dateNow,
           ];
         }
         DB::table('order_details')->insert($data);

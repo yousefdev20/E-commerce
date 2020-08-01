@@ -2135,9 +2135,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.Index();
-    console.log("Created Method (2)");
-    this.ReadSessionMessage();
-    this.readSession();
+    console.log("Created Method (2)"); //this.ReadSessionMessage();
+    //this.readSession();
   },
   methods: {
     readSession: function readSession() {

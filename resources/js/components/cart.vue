@@ -194,8 +194,8 @@ export default {
   created() {
     this.Index();
     console.log("Created Method (2)");
-    this.ReadSessionMessage();
-    this.readSession();
+    //this.ReadSessionMessage();
+    //this.readSession();
   },
   methods: {
     readSession(){

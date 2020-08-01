@@ -41,3 +41,5 @@ Route::get('admin/up','cache\cacheController@up');
 
 
 Route::get('/pdf','bill\PDFController@installBill');
+
+Route::get('/charts','ChartController@index');
