@@ -2349,8 +2349,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(that.session);
         console.log(response.data);
       })["catch"](function (error) {
-        console.error(error);
-        location.href = '../../login';
+        console.error(error); //location.href = '../../login';
       })["finally"](function () {});
     }
   }

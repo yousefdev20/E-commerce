@@ -417,7 +417,7 @@ axios.post('/cart/coupon/applied',{
 })
 .catch(function(error){
   console.error(error);
-  location.href = '../../login';
+  //location.href = '../../login';
 })
 .finally(function(){
 })
