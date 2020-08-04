@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Str;
-
-$DATABASE_URL = parse_url('postgres://nhcslsyspuivvl:48c66ce1455a7c334eef65d790b5c3bd679e5a4820283ec68597e3b2c61bebf8@ec2-54-197-254-117.compute-1.amazonaws.com:5432/d38bhid35n4ou2');
+$DATABASE_URL=parse_url('postgres://nhcslsyspuivvl:48c66ce1455a7c334eef65d790b5c3bd679e5a4820283ec68597e3b2c61bebf8@ec2-54-197-254-117.compute-1.amazonaws.com:5432/d38bhid35n4ou2
+');
 
 return [
 
@@ -17,7 +17,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'pgsql'),
+  'default' => env('DB_CONNECTION', 'pgsql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -69,7 +69,7 @@ return [
             'driver' => 'pgsql',
             'host' => $DATABASE_URL['host'],
             'port' => $DATABASE_URL['port'],
-            'database' => ltrim($DATABASE_URL['path'], "/"),
+            'database' => ltrim($DATABASE_URL['path'],'/'),
             'username' => $DATABASE_URL['user'],
             'password' => $DATABASE_URL['pass'],
             'charset' => 'utf8',
@@ -105,7 +105,7 @@ return [
     |
     */
 
-    'migrations' => 'migrations',
+  'migrations' => 'migrations',
 
     /*
     |--------------------------------------------------------------------------
