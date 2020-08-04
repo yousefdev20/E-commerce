@@ -605,6 +605,20 @@ class ComposerStaticInit3f59d1fb1989888dbea1d8ac8f5df3e0
     );
 
     public static $prefixesPsr0 = array (
+        'W' => 
+        array (
+            'Way\\Generators' => 
+            array (
+                0 => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src',
+            ),
+        ),
+        'O' => 
+        array (
+            'OscarAFDev\\MigrationsGenerator' => 
+            array (
+                0 => __DIR__ . '/..' . '/oscarafdev/migrations-generator/src',
+            ),
+        ),
         'M' => 
         array (
             'Mockery' => 
@@ -628,8 +642,11 @@ class ComposerStaticInit3f59d1fb1989888dbea1d8ac8f5df3e0
     public static $classMap = array (
         'App\\Branch' => __DIR__ . '/../..' . '/app/Branch.php',
         'App\\Carousel' => __DIR__ . '/../..' . '/app/Carousel.php',
+        'App\\Charts\\SampleChart' => __DIR__ . '/../..' . '/app/Charts/SampleChart.php',
         'App\\Console\\Commands\\DatabaseBackUp' => __DIR__ . '/../..' . '/app/Console/Commands/DatabaseBackUp.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Coupon' => __DIR__ . '/../..' . '/app/Coupon.php',
+        'App\\CouponType' => __DIR__ . '/../..' . '/app/CouponType.php',
         'App\\Deal' => __DIR__ . '/../..' . '/app/Deal.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
@@ -638,6 +655,7 @@ class ComposerStaticInit3f59d1fb1989888dbea1d8ac8f5df3e0
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
+        'App\\Http\\Controllers\\ChartController' => __DIR__ . '/../..' . '/app/Http/Controllers/ChartController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\bill\\PDFController' => __DIR__ . '/../..' . '/app/Http/Controllers/bill/PDFController.php',
@@ -674,6 +692,7 @@ class ComposerStaticInit3f59d1fb1989888dbea1d8ac8f5df3e0
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Rules\\phone' => __DIR__ . '/../..' . '/app/Rules/phone.php',
         'App\\Rules\\phonelength' => __DIR__ . '/../..' . '/app/Rules/phonelength.php',
+        'App\\SaleBox' => __DIR__ . '/../..' . '/app/SaleBox.php',
         'App\\Store' => __DIR__ . '/../..' . '/app/Store.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\Warehouse' => __DIR__ . '/../..' . '/app/Warehouse.php',
@@ -3946,6 +3965,17 @@ class ComposerStaticInit3f59d1fb1989888dbea1d8ac8f5df3e0
         'Opis\\Closure\\SecurityProvider' => __DIR__ . '/..' . '/opis/closure/src/SecurityProvider.php',
         'Opis\\Closure\\SelfReference' => __DIR__ . '/..' . '/opis/closure/src/SelfReference.php',
         'Opis\\Closure\\SerializableClosure' => __DIR__ . '/..' . '/opis/closure/src/SerializableClosure.php',
+        'OscarAFDev\\MigrationsGenerator\\Generators\\FieldGenerator' => __DIR__ . '/..' . '/oscarafdev/migrations-generator/src/OscarAFDev/MigrationsGenerator/Generators/FieldGenerator.php',
+        'OscarAFDev\\MigrationsGenerator\\Generators\\ForeignKeyGenerator' => __DIR__ . '/..' . '/oscarafdev/migrations-generator/src/OscarAFDev/MigrationsGenerator/Generators/ForeignKeyGenerator.php',
+        'OscarAFDev\\MigrationsGenerator\\Generators\\IndexGenerator' => __DIR__ . '/..' . '/oscarafdev/migrations-generator/src/OscarAFDev/MigrationsGenerator/Generators/IndexGenerator.php',
+        'OscarAFDev\\MigrationsGenerator\\Generators\\SchemaGenerator' => __DIR__ . '/..' . '/oscarafdev/migrations-generator/src/OscarAFDev/MigrationsGenerator/Generators/SchemaGenerator.php',
+        'OscarAFDev\\MigrationsGenerator\\MigrateGenerateCommand' => __DIR__ . '/..' . '/oscarafdev/migrations-generator/src/OscarAFDev/MigrationsGenerator/MigrateGenerateCommand.php',
+        'OscarAFDev\\MigrationsGenerator\\MigrationsGeneratorServiceProvider' => __DIR__ . '/..' . '/oscarafdev/migrations-generator/src/OscarAFDev/MigrationsGenerator/MigrationsGeneratorServiceProvider.php',
+        'OscarAFDev\\MigrationsGenerator\\Syntax\\AddForeignKeysToTable' => __DIR__ . '/..' . '/oscarafdev/migrations-generator/src/OscarAFDev/MigrationsGenerator/Syntax/AddForeignKeysToTable.php',
+        'OscarAFDev\\MigrationsGenerator\\Syntax\\AddToTable' => __DIR__ . '/..' . '/oscarafdev/migrations-generator/src/OscarAFDev/MigrationsGenerator/Syntax/AddToTable.php',
+        'OscarAFDev\\MigrationsGenerator\\Syntax\\DroppedTable' => __DIR__ . '/..' . '/oscarafdev/migrations-generator/src/OscarAFDev/MigrationsGenerator/Syntax/DroppedTable.php',
+        'OscarAFDev\\MigrationsGenerator\\Syntax\\RemoveForeignKeysFromTable' => __DIR__ . '/..' . '/oscarafdev/migrations-generator/src/OscarAFDev/MigrationsGenerator/Syntax/RemoveForeignKeysFromTable.php',
+        'OscarAFDev\\MigrationsGenerator\\Syntax\\Table' => __DIR__ . '/..' . '/oscarafdev/migrations-generator/src/OscarAFDev/MigrationsGenerator/Syntax/Table.php',
         'PHPUnit\\Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert.php',
         'PHPUnit\\Framework\\AssertionFailedError' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Exception/AssertionFailedError.php',
@@ -6455,6 +6485,34 @@ class ComposerStaticInit3f59d1fb1989888dbea1d8ac8f5df3e0
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'VoyagerDatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/VoyagerDatabaseSeeder.php',
         'VoyagerDummyDatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/VoyagerDummyDatabaseSeeder.php',
+        'Way\\Generators\\Commands\\ControllerGeneratorCommand' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/Commands/ControllerGeneratorCommand.php',
+        'Way\\Generators\\Commands\\GeneratorCommand' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/Commands/GeneratorCommand.php',
+        'Way\\Generators\\Commands\\MigrationGeneratorCommand' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/Commands/MigrationGeneratorCommand.php',
+        'Way\\Generators\\Commands\\ModelGeneratorCommand' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/Commands/ModelGeneratorCommand.php',
+        'Way\\Generators\\Commands\\PivotGeneratorCommand' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/Commands/PivotGeneratorCommand.php',
+        'Way\\Generators\\Commands\\PublishTemplatesCommand' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/Commands/PublishTemplatesCommand.php',
+        'Way\\Generators\\Commands\\ResourceGeneratorCommand' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/Commands/ResourceGeneratorCommand.php',
+        'Way\\Generators\\Commands\\ScaffoldGeneratorCommand' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/Commands/ScaffoldGeneratorCommand.php',
+        'Way\\Generators\\Commands\\SeederGeneratorCommand' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/Commands/SeederGeneratorCommand.php',
+        'Way\\Generators\\Commands\\ViewGeneratorCommand' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/Commands/ViewGeneratorCommand.php',
+        'Way\\Generators\\Compilers\\Compiler' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/Compilers/Compiler.php',
+        'Way\\Generators\\Compilers\\TemplateCompiler' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/Compilers/TemplateCompiler.php',
+        'Way\\Generators\\Filesystem\\FileAlreadyExists' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/Filesystem/FileAlreadyExists.php',
+        'Way\\Generators\\Filesystem\\FileNotFound' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/Filesystem/FileNotFound.php',
+        'Way\\Generators\\Filesystem\\Filesystem' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/Filesystem/Filesystem.php',
+        'Way\\Generators\\Generator' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/Generator.php',
+        'Way\\Generators\\GeneratorsServiceProvider' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/GeneratorsServiceProvider.php',
+        'Way\\Generators\\InvalidMigrationName' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/InvalidMigrationName.php',
+        'Way\\Generators\\Parsers\\MigrationFieldsParser' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/Parsers/MigrationFieldsParser.php',
+        'Way\\Generators\\Parsers\\MigrationNameParser' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/Parsers/MigrationNameParser.php',
+        'Way\\Generators\\SchemaCreator' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/SchemaCreator.php',
+        'Way\\Generators\\Syntax\\AddToTable' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/Syntax/AddToTable.php',
+        'Way\\Generators\\Syntax\\CreateTable' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/Syntax/CreateTable.php',
+        'Way\\Generators\\Syntax\\DroppedTable' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/Syntax/DroppedTable.php',
+        'Way\\Generators\\Syntax\\RemoveFromTable' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/Syntax/RemoveFromTable.php',
+        'Way\\Generators\\Syntax\\Table' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/Syntax/Table.php',
+        'Way\\Generators\\Templates\\Data\\Controller' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/Templates/Data/Controller.php',
+        'Way\\Generators\\Templates\\Data\\Migration' => __DIR__ . '/..' . '/oscarafdev/laravel-4-generators/src/Way/Generators/Templates/Data/Migration.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'Webmozart\\Assert\\Mixin' => __DIR__ . '/..' . '/webmozart/assert/src/Mixin.php',
         'Whoops\\Exception\\ErrorException' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
