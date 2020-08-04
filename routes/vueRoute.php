@@ -56,3 +56,4 @@ Route::get('/popular','shopping\popularController@index');
 Route::get('/test', function(){
   return Cache::get('products');
 });
+Route::post('/cart/coupon/applied','order\orderController@CheckOut');

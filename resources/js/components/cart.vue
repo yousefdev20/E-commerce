@@ -53,13 +53,19 @@
     <!---->
 
 
-    <table class="table table-bordered borderd w-25 font-weight-bold mb-2">
+    <table class="table table-bordered borderd w-50 font-weight-bold mb-2">
       <tr>
         <td>Total</td>
         <td class="EndPrice">{{Math.ceil(totalprice*100)/100}} $</td>
       </tr>
+
       <tr>
-        <td>finish Total</td>
+        <td>Discount   ( {{ discount }}% )</td>
+        <td class="EndPrice">{{Math.ceil(discount*100)/100}} $</td>
+      </tr>
+
+      <tr>
+        <td>Finish Total</td>
         <td class="EndPrice">{{Math.ceil(totalprice*100)/100}} $</td>
       </tr>
     </table>
@@ -80,8 +86,17 @@
               </div>
               <div class="modal-body">
                 <section class="mb-5">
-                  <input type="text"class="form-control" name="" placeholder="Enter Coupon Code"style="width:250px">
-                  <button type="button" name="button"class="text-success form-control mt-2"style="width:150px">Apply Coupon</button>
+                <form @submit.prevent="CouponApplied($event)" action="" method="POST">
+                  <div v-if="session == true">
+                    <div class="alert alert-success mt-2">The Coupon Has Been Applied Success!</div>
+                    </div>
+                  <div v-else-if="session == false">
+                    <div class="alert alert-danger mt-2">This Coupon Code Has Been Expired!</div>
+                  </div>
+                  <div v-else></div>
+                  <input type="text"class="form-control" name="coupon" placeholder="Enter Coupon Code"style="width:250px">
+                  <button type="submit" name="button"class="text-success form-control mt-2"style="width:150px">Apply Coupon</button>
+                </form>
                 </section>
               </div>
               <div class="modal-footer">
@@ -179,16 +194,18 @@
 export default {
   data() {
     return {
-      products:[],
-      cart:[],
-      arr:[],
-      status:false,
-      ProductAddInCart:'',
-      totalprice:0.0,
-      coun:0,
-      latitude:0,
+      products: [],
+      cart    : [],
+      arr     : [],
+      status  : false,
+      coun    : 0,
+      latitude: 0,
       longitude:0,
-      secretId:null,
+      discount :0,
+      secretId : null,
+      session  : null,
+      ProductAddInCart : '',
+      totalprice:0.0,
     }
   },
   created() {
@@ -383,7 +400,27 @@ MinusItem(ref){
   }else {
     $('.countingFiled'+ref.target.id).text('1');
   }
-}
-}
+},
+CouponApplied($event){
+var that = this;
+axios.post('/cart/coupon/applied',{
+ coupon : $event.target.coupon.value,
+})
+.then(function(response){
+  if(response.data == "filer!"){
+    that.session = false;
+  }else{
+      that.session = true;
+  }
+  console.log(that.session);
+  console.log(response.data);
+})
+.catch(function(error){
+  console.error(error);
+  location.href = '../../login';
+})
+.finally(function(){
+})
+}}
 };
 </script>

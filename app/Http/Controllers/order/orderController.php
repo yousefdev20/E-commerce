@@ -37,6 +37,14 @@ class orderController extends Controller
     {
 
     }
+    public function CheckOut(Request $request) {
+      $coupon = $request->coupon;
+      if((DB::table('coupons')->where('code',$coupon)->exists())) {
+        Session::put('coupon',$coupon);
+      }else {
+        return "filer!";
+      }
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -44,6 +52,7 @@ class orderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
       $ip = $request->server('REMOTE_ADDR');

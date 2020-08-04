@@ -2118,6 +2118,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2125,12 +2140,14 @@ __webpack_require__.r(__webpack_exports__);
       cart: [],
       arr: [],
       status: false,
-      ProductAddInCart: '',
-      totalprice: 0.0,
       coun: 0,
       latitude: 0,
       longitude: 0,
-      secretId: null
+      discount: 0,
+      secretId: null,
+      session: null,
+      ProductAddInCart: '',
+      totalprice: 0.0
     };
   },
   created: function created() {
@@ -2317,6 +2334,24 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         $('.countingFiled' + ref.target.id).text('1');
       }
+    },
+    CouponApplied: function CouponApplied($event) {
+      var that = this;
+      axios.post('/cart/coupon/applied', {
+        coupon: $event.target.coupon.value
+      }).then(function (response) {
+        if (response.data == "filer!") {
+          that.session = false;
+        } else {
+          that.session = true;
+        }
+
+        console.log(that.session);
+        console.log(response.data);
+      })["catch"](function (error) {
+        console.error(error);
+        location.href = '../../login';
+      })["finally"](function () {});
     }
   }
 });
@@ -38890,7 +38925,7 @@ var render = function() {
     _c(
       "table",
       {
-        staticClass: "table table-bordered borderd w-25 font-weight-bold mb-2"
+        staticClass: "table table-bordered borderd w-50 font-weight-bold mb-2"
       },
       [
         _c("tr", [
@@ -38902,7 +38937,15 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("tr", [
-          _c("td", [_vm._v("finish Total")]),
+          _c("td", [_vm._v("Discount   ( " + _vm._s(_vm.discount) + "% )")]),
+          _vm._v(" "),
+          _c("td", { staticClass: "EndPrice" }, [
+            _vm._v(_vm._s(Math.ceil(_vm.discount * 100) / 100) + " $")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("tr", [
+          _c("td", [_vm._v("Finish Total")]),
           _vm._v(" "),
           _c("td", { staticClass: "EndPrice" }, [
             _vm._v(_vm._s(Math.ceil(_vm.totalprice * 100) / 100) + " $")
@@ -38940,7 +38983,86 @@ var render = function() {
               [_vm._v("Coupon Code")]
             ),
             _vm._v(" "),
-            _vm._m(1),
+            _c(
+              "div",
+              {
+                staticClass: "modal fade",
+                attrs: { id: "myModal", role: "dialog" }
+              },
+              [
+                _c("div", { staticClass: "modal-dialog" }, [
+                  _c("div", { staticClass: "modal-content" }, [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "modal-body" }, [
+                      _c("section", { staticClass: "mb-5" }, [
+                        _c(
+                          "form",
+                          {
+                            attrs: { action: "", method: "POST" },
+                            on: {
+                              submit: function($event) {
+                                $event.preventDefault()
+                                return _vm.CouponApplied($event)
+                              }
+                            }
+                          },
+                          [
+                            _vm.session == true
+                              ? _c("div", [
+                                  _c(
+                                    "div",
+                                    { staticClass: "alert alert-success mt-2" },
+                                    [
+                                      _vm._v(
+                                        "The Coupon Has Been Applied Success!"
+                                      )
+                                    ]
+                                  )
+                                ])
+                              : _vm.session == false
+                              ? _c("div", [
+                                  _c(
+                                    "div",
+                                    { staticClass: "alert alert-danger mt-2" },
+                                    [
+                                      _vm._v(
+                                        "This Coupon Code Has Been Expired!"
+                                      )
+                                    ]
+                                  )
+                                ])
+                              : _c("div"),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              staticStyle: { width: "250px" },
+                              attrs: {
+                                type: "text",
+                                name: "coupon",
+                                placeholder: "Enter Coupon Code"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "text-success form-control mt-2",
+                                staticStyle: { width: "150px" },
+                                attrs: { type: "submit", name: "button" }
+                              },
+                              [_vm._v("Apply Coupon")]
+                            )
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(2)
+                  ])
+                ])
+              ]
+            ),
             _vm._v(" "),
             _c(
               "div",
@@ -38951,7 +39073,7 @@ var render = function() {
               [
                 _c("div", { staticClass: "modal-dialog" }, [
                   _c("div", { staticClass: "modal-content" }, [
-                    _vm._m(2),
+                    _vm._m(3),
                     _vm._v(" "),
                     _c("div", { staticClass: "modal-body" }, [
                       _c("section", { staticClass: "mb-5" }, [
@@ -38967,23 +39089,23 @@ var render = function() {
                             }
                           },
                           [
-                            _vm._m(3),
-                            _vm._v(" "),
                             _vm._m(4),
                             _vm._v(" "),
-                            _vm._m(5)
+                            _vm._m(5),
+                            _vm._v(" "),
+                            _vm._m(6)
                           ]
                         )
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm._m(6)
+                    _vm._m(7)
                   ])
                 ])
               ]
             ),
             _vm._v(" "),
-            _vm._m(7)
+            _vm._m(8)
           ])
         : _c("div", [
             _c(
@@ -39020,65 +39142,35 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "modal fade", attrs: { id: "myModal", role: "dialog" } },
-      [
-        _c("div", { staticClass: "modal-dialog" }, [
-          _c("div", { staticClass: "modal-content" }, [
-            _c("div", { staticClass: "modal-header" }, [
-              _c("h4", { staticClass: "modal-title text-left" }, [
-                _vm._v("You Have Coupon Code? ")
-              ]),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "close",
-                  attrs: { type: "button", "data-dismiss": "modal" }
-                },
-                [_vm._v("×")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "modal-body" }, [
-              _c("section", { staticClass: "mb-5" }, [
-                _c("input", {
-                  staticClass: "form-control",
-                  staticStyle: { width: "250px" },
-                  attrs: {
-                    type: "text",
-                    name: "",
-                    placeholder: "Enter Coupon Code"
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "text-success form-control mt-2",
-                    staticStyle: { width: "150px" },
-                    attrs: { type: "button", name: "button" }
-                  },
-                  [_vm._v("Apply Coupon")]
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "modal-footer" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-danger",
-                  attrs: { type: "button", "data-dismiss": "modal" }
-                },
-                [_vm._v("Close")]
-              )
-            ])
-          ])
-        ])
-      ]
-    )
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title text-left" }, [
+        _vm._v("You Have Coupon Code? ")
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("×")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      )
+    ])
   },
   function() {
     var _vm = this
