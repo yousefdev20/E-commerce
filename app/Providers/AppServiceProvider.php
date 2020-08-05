@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\ServiceProvider;
 use ConsoleTVs\Charts\Registrar as Charts;
 
@@ -12,9 +13,11 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function boot(UrlGenerator $url)
     {
-        //
+        if(env('REDIRECT_HTTPS')) {
+        	$url->formatScheme('https');
+        }
     }
 
     /**
@@ -22,10 +25,11 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(Charts $charts)
+    public function register()
     {
-        $charts->register([
-            \App\Charts\SampleChart::class
-        ]);
+        if(env('REDIRECT_HTTPS')) {
+        	$this->app['request']->server->set('HTTPS',true);
+
+        }
     }
 }
