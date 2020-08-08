@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Str;
-$DATABASE_URL=parse_url('postgres://hahvveaoicekhp:dd83e14c7ab36e60f26ee6feefd67fb58b420233085f4f5892c6153d601ac51d@ec2-54-211-210-149.compute-1.amazonaws.com:5432/d5s19n3bpsdjpk
-');
 
 return [
 
@@ -17,7 +15,7 @@ return [
     |
     */
 
-  'default' => env('DB_CONNECTION', 'pgsql'),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -67,11 +65,12 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'host' => "ec2-54-243-67-199.compute-1.amazonaws.com",
-            'port' => "5432",
-            'database' => "dbj3voji11vuht",
-            'username' => "uqgkovikuyarzq",
-            'password' => "c114a752b5b3f3210f9d7558827575cbbd984642f2894e9b0ed4b2a9f73e0069",
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '5432'),
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
@@ -105,7 +104,7 @@ return [
     |
     */
 
-  'migrations' => 'migrations',
+    'migrations' => 'migrations',
 
     /*
     |--------------------------------------------------------------------------

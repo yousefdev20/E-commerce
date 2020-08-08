@@ -14,7 +14,7 @@
        @foreach($sliders as $key=>$item)
          @if($key == 0)
            <div class="carousel-item active">
-            <img class="d-block w-100 cus-height" src="{{asset('storage/'.$item->image_url)}}"width="100%" alt="First slide"height="570px">
+            <img class="d-block w-100 cus-height" src="{{url('storage/'.$item->image_url)}}"width="100%" alt="First slide"height="570px">
             <div class="carousel-caption">
                 <h2 class="display-4">{{$item->name}}</h2>
                 <h4>{{ $item->description }}</h4>
@@ -23,7 +23,7 @@
           @else
 
            <div class="carousel-item">
-            <img class="d-block w-100 cus-height" src="{{asset('storage/'.$item->image_url)}}"width="100%" alt="Second slide"height="570px">
+            <img class="d-block w-100 cus-height" src="{{url('storage/'.$item->image_url)}}"width="100%" alt="Second slide"height="570px">
             <div class="carousel-caption">
               <h2 class="display-4">{{$item->name}}</h2>
               <h4>{{ $item->description }}</h4>

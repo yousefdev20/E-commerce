@@ -39,11 +39,11 @@ class orderController extends Controller
     }
     public function CheckOut(Request $request) {
       $coupon = $request->coupon;
-      return (DB::table('coupons')->where('code',$coupon)->select('expired_at')->get()).date('Y-m-d H:i:s');
+      $expire =  (DB::table('coupons')->where('code',$coupon)->select('expired_at')->get());
       if((DB::table('coupons')->where('code',$coupon)->exists())) {
-        if (DB::table('coupons')->where('code',$coupon)->select('expired_at')->get() > date()) {
+        if ($expire[0]->expired_at >= date('Y-m-d')) {
           Session::put('coupon',$coupon);
-          return DB::table('coupons')->where('code',$coupon)->select('value')->get();
+          return DB::table('coupons')->where('code',$coupon)->get();
         } else {
           return "filer!";
         }

@@ -13,17 +13,37 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+/*
+* to browse main page
+*
+*/
 Route::resource('/shopping', 'shopping\shopController');
+/*
+* index To Browse All Products in Cache
+* store To Create Cart and Stored Data
+* destroy To destroy To Delete Item In Cart Or destroy The Cart
+*/
 Route::resource('/product', 'shopping\productController');
+/*
+* index To Browse Cart Shopping
+*
+*/
 Route::resource('/cart', 'cart\cartController');
 
 //to load cart
 Route::get('/shopping/cart/load',function(){
   return view('cart.cart');
 })->name('cart');
-
+// resourses post, get, put, delete methothods
+/*
+* store to store orders
+* CheckOut to applied payment methods
+* index to prowse all orders but we dont need here it made in voyager admin panel not here
+* constructer the user shell be authonticated to use any things from this group
+*/
 Route::resource('/order', 'order\orderController');
-
+// To Browse Delas
 Route::get('/deals','shopping\dealController@index');
 
 Route::group(['prefix' => '/goods', 'namespace' => 'shopping\shops'],function(){
@@ -42,6 +62,7 @@ Route::group(['prefix' => '/goods', 'namespace' => 'shopping\shops'],function(){
 });
 Route::get('shopping/bakery','shopping\shops\bakeryController@index');
 
+// To Payment Methods Disabile now still not working
 Route::group(['prefix' => '/payment', 'namespace' => 'payment'],function(){
   Route::post('/pay','paymentProviderController@request')->name('payment');
   Route::get('/pay','paymentProviderController@request')->name('responsePayment');
@@ -51,9 +72,5 @@ Route::group(['prefix' => '/payment', 'namespace' => 'payment'],function(){
 //popular
 Route::get('/popular','shopping\popularController@index');
 
-
-//Route For Test
-Route::get('/test', function(){
-  return Cache::get('products');
-});
+//  To Applied Coupon Code
 Route::post('/cart/coupon/applied','order\orderController@CheckOut');

@@ -2340,9 +2340,13 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/cart/coupon/applied', {
         coupon: $event.target.coupon.value
       }).then(function (response) {
+        console.error('yousef');
+
         if (response.data == "filer!") {
           that.session = false;
         } else {
+          that.ProductAddInCart = "The Coupon Has Been Applied";
+          that.status = true;
           that.session = true;
         }
 
@@ -38794,8 +38798,8 @@ var render = function() {
                 [_vm._v("×")]
               ),
               _vm._v(" "),
-              _c("strong", [_vm._v("Item Added!")]),
-              _vm._v(" " + _vm._s(_vm.ProductAddInCart) + " .\n    ")
+              _c("strong"),
+              _vm._v(" " + _vm._s(_vm.ProductAddInCart) + "! .\n    ")
             ]
           )
         ])

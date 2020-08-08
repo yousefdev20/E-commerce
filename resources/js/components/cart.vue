@@ -3,7 +3,7 @@
     <div v-if="status">
       <div class="alert alert-success alert-dismissible fade show">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Item Added!</strong> {{ProductAddInCart}} .
+        <strong></strong> {{ProductAddInCart}}! .
       </div>
     </div>
     <!--this table browse all product bougth-->
@@ -407,10 +407,15 @@ axios.post('/cart/coupon/applied',{
  coupon : $event.target.coupon.value,
 })
 .then(function(response){
+console.error('yousef');
   if(response.data == "filer!"){
     that.session = false;
   }else{
+
+      that.ProductAddInCart = "The Coupon Has Been Applied";
+      that.status = true;
       that.session = true;
+
   }
   console.log(that.session);
   console.log(response.data);
