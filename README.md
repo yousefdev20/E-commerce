@@ -10,9 +10,9 @@
 8. storer.js
 9. validation.js
 ```
-all of those class are invloved methods
+all of these (class)are involved in methods
 ```
-## all class exists in public direction inside js direction
+## all (classes) exists in public direction inside js direction
 1. binder.js
     - constructor
         - to initialize class involved alert statement in class name.
@@ -34,3 +34,5 @@ all of those class are invloved methods
     - accept
         - this method takes three parameters (object type, event, options)
     
+4. etc
+<b>thank you hard</b>
