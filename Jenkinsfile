@@ -3,8 +3,7 @@ pipeline {
     stages {        
         stage ('build') {            
             steps {
-                sh "echo Everything woking fine so nice...."
-                sh "build ..."
+                sh "echo Everything woking fine so nice...."               
             }            
         }
     }
